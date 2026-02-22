@@ -135,13 +135,14 @@ def find_card_container_from_anchor(a_tag):
     # fallback to the anchor's parent
     return a_tag.parent or a_tag
 
-def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_state_path: str):
+def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_state_path: str, headless = True):
     # Dictionary of supported cities and their Facebook Marketplace slugs
     cities = {
-        'Vancouver': 'vancouver', 'Victoria': 'victoria', 'Burnaby': 'burnaby', 'Richmond': '112202378796934',
-        'Surrey': 'surrey', 'Kelowna': 'kelowna', 'Abbotsford': 'abbotsford', 'Nanaimo': 'nanaimo',
-        'Kamloops': 'kamloops', 'Prince George': 'princegeorge', 'Coquitlam': 'coquitlam',
-        'Saanich': 'saanich', 'Langley': 'langley', 'Delta': 'delta', 'Maple Ridge': 'mapleridge'
+        'Vancouver': 'vancouver', 'Victoria': 'victoria', 'Burnaby': '110574778966847', 'Richmond': '112202378796934',
+        'Surrey': '109571329060695', 'Kelowna': '111949595490847', 'Abbotsford': '112008808810771', 'Nanaimo': 'nanaimo',
+        'Kamloops': '114995818516099', 'Prince George': '114995818516099', 'Coquitlam': '110019705694079',
+        'Langley': '105471749485955', 'Delta': '106083456090237', 'Maple Ridge': '103746596331495', 'New Westminster': '115381681808519',
+        'Courtenay': '103113716395848',
     }
 
     city_id = cities.get(city, city.lower().replace(' ', ''))
@@ -156,7 +157,7 @@ def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_s
 
     with sync_playwright() as p:
         # Load the saved authentication state
-        browser = p.chromium.launch(headless=True)  # Change to True for headless operation
+        browser = p.chromium.launch(headless=headless)  # Change to True for headless operation
         context = browser.new_context(storage_state=auth_state_path)
         page = context.new_page()
 
@@ -244,8 +245,8 @@ if __name__ == "__main__":
     parser.add_argument('--query', required=True, help='Search query (e.g., "vintage bike").')
     parser.add_argument('--max_price', type=int, default=1000, help='Maximum price for listings.')
     parser.add_argument('--auth_state_path', default="auth_state.json", help='Path to the authentication state file.')
-
+    parser.add_argument('--no-headless', action='store_false', dest='headless', default=True, help='Show browser window (disable headless mode)')
     args = parser.parse_args()
 
-    results = crawl_facebook_marketplace_cli(args.city, args.query, args.max_price, args.auth_state_path)
+    results = crawl_facebook_marketplace_cli(args.city, args.query, args.max_price, args.auth_state_path, headless=args.headless)
     print(json.dumps(results, indent=2))
