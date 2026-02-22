@@ -64,7 +64,7 @@ Results are printed to the console in **JSON format**.
 
 ```bash
 git clone https://github.com/Scratchycarl/OpenClaw_Facebook_Marketplace_Scraper
-cd facebook-marketplace-scraper
+cd OpenClaw_Facebook_Marketplace_Scraper
 ```
 
 ### 2. Install dependencies
