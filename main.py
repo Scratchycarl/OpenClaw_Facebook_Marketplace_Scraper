@@ -136,7 +136,7 @@ def find_card_container_from_anchor(a_tag):
     # fallback to the anchor's parent
     return a_tag.parent or a_tag
 
-def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_state_path: str, headless = True):
+def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_state_path: str, headless: bool = True, debug: bool = False):
     # Dictionary of supported cities and their Facebook Marketplace slugs
     cities = {
         'Vancouver': 'vancouver', 'Victoria': 'victoria', 'Burnaby': '110574778966847', 'Richmond': '112202378796934',
@@ -198,6 +198,8 @@ def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_s
                     anchors.append(a)
 
         for a in anchors:
+            if debug:
+                print(f"[DEBUG] Found raw Marketplace URL: {a.get('href')}", file=os.sys.stderr)
             try:
                 href = a.get('href')
                 if not href:
@@ -249,7 +251,8 @@ if __name__ == "__main__":
     parser.add_argument('--max_price', type=int, default=1000, help='Maximum price for listings.')
     parser.add_argument('--auth_state_path', default="auth_state.json", help='Path to the authentication state file.')
     parser.add_argument('--no-headless', action='store_false', dest='headless', default=True, help='Show browser window (disable headless mode)')
+    parser.add_argument('--debug', action='store_true', help='Print all discovered Marketplace URLs for debugging.')
     args = parser.parse_args()
 
-    results = crawl_facebook_marketplace_cli(args.city, args.query, args.max_price, args.auth_state_path, headless=args.headless)
+    results = crawl_facebook_marketplace_cli(args.city, args.query, args.max_price, args.auth_state_path, headless=args.headless, debug=args.debug)
     print(json.dumps(results, indent=2))
