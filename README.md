@@ -63,7 +63,7 @@ Results are printed to the console in **JSON format**.
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/passivebot/facebook-marketplace-scraper
+git clone https://github.com/Scratchycarl/OpenClaw_Facebook_Marketplace_Scraper
 cd facebook-marketplace-scraper
 ```
 
