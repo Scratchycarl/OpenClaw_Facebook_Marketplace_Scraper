@@ -23,8 +23,6 @@ def login_and_save_cookies(output_path: str):
         browser.close()
 
 if __name__ == "__main__":
-    # Save auth_state.json in the parent directory of the script
-    script_dir = os.path.dirname(__file__)
-    cookie_file = os.path.join(script_dir, "..", "auth_state.json")
+    cookie_file = "auth_state.json"
     login_and_save_cookies(cookie_file)
-    print(f"Authentication state saved to {cookie_file}", file=os.sys.stderr)
+    print(f"To use the saved session, set AUTH_STATE_PATH='{cookie_file}' in your environment for the scraping script.", file=os.sys.stderr)

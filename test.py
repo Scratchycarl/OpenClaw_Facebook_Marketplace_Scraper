@@ -247,7 +247,7 @@ if __name__ == "__main__":
     parser.add_argument('--city', required=True, help='City for the search (e.g., "Los Angeles").')
     parser.add_argument('--query', required=True, help='Search query (e.g., "vintage bike").')
     parser.add_argument('--max_price', type=int, default=1000, help='Maximum price for listings.')
-    parser.add_argument('--auth_state_path', default=os.path.join(os.path.dirname(__file__), "..", "auth_state.json"), help='Path to the authentication state file.')
+    parser.add_argument('--auth_state_path', default="auth_state.json", help='Path to the authentication state file.')
     parser.add_argument('--no-headless', action='store_false', dest='headless', default=True, help='Show browser window (disable headless mode)')
     args = parser.parse_args()
 
