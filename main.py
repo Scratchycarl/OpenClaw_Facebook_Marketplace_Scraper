@@ -170,11 +170,11 @@ def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_s
             # Give FB some time to load dynamic content and do a gentle scroll to trigger lazy loads
             time.sleep(4)
             # scroll down gradually to load more cards
-            for _ in range(6):
-                page.evaluate("window.scrollBy(0, window.innerHeight);")
-                time.sleep(1.2)
-            # allow extra time for hydration
-            time.sleep(6)
+            # for _ in range(6):
+            #     page.evaluate("window.scrollBy(0, window.innerHeight);")
+            #     time.sleep(1.2)
+            # # allow extra time for hydration
+            # time.sleep(6)
 
         except Exception as e:
             print(f"An error occurred during navigation: {e}", file=os.sys.stderr)
