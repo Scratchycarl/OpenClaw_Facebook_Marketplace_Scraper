@@ -76,7 +76,7 @@ python3 -m pip install playwright beautifulsoup4 lxml
 ### 3. Install Playwright browser
 
 ```bash
-playwright install chromium
+python3 -m playwright install chromium
 ```
 
 ---
