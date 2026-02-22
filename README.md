@@ -110,20 +110,20 @@ auth_state.json
 ## Step 2 — Run the Scraper
 
 ```bash
-python3 test.py --city "" --query "" --max_price
+python3 main.py --city "" --query "" --max_price
 ```
 
 ### Example
 
 ```bash
-python3 test.py --city "Richmond" --query "iPad Air" --max_price 100
+python3 main.py --city "Richmond" --query "iPad Air" --max_price 100
 ```
 
 ---
 
 ## Supported Cities (Metro Vancouver, BC and surrounding areas)
 
-The `test.py` script includes a predefined dictionary of cities, primarily focused on Metro Vancouver and surrounding areas in British Columbia. These cities use special Marketplace IDs for improved reliability. You can customize the `cities` dictionary within `test.py` to add or modify supported locations:
+The `main.py` script includes a predefined dictionary of cities, primarily focused on Metro Vancouver and surrounding areas in British Columbia. These cities use special Marketplace IDs for improved reliability. You can customize the `cities` dictionary within `main.py` to add or modify supported locations:
 
 ```python
 cities = {
@@ -163,8 +163,3 @@ The scraper prints a JSON array:
 * Do not run aggressively (high request frequency may trigger anti-bot detection)
 * Use responsibly and ethically
 
----
-
-If you want, I can also write a short GitHub repo description + tags so it looks more “legit” and searchable.
-
-The script outputs a JSON array of dictionaries, where each dictionary represents a listing with the following fields: name, price, location, image (URL), and link (to the listing).
