@@ -120,6 +120,20 @@ def extract_title_and_location_from_texts(texts, price_text=None):
 
     return title, location
 
+def is_listing_relevant(listing_name: str, query: str) -> bool:
+    """
+    Checks if a listing name is relevant to the search query.
+    Performs a case-insensitive check to see if all query keywords are in the listing name.
+    """
+    normalized_listing_name = listing_name.lower()
+    query_keywords = [q.lower() for q in query.split() if q]
+
+    if not query_keywords:  # If query is empty, consider all non-"N/A" listings relevant
+        return listing_name.lower() != "n/a"
+
+    # All query keywords must be present in the listing name
+    return all(keyword in normalized_listing_name for keyword in query_keywords)
+
 def find_card_container_from_anchor(a_tag):
     """
     Starting from the anchor that links to /marketplace/item/, climb parents to find a reasonable container
@@ -234,7 +248,11 @@ def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_s
                     'link': post_url
                 }
 
-                parsed.append(result)
+                # Perform relevance check
+                if is_listing_relevant(title, query):
+                    parsed.append(result)
+                elif debug:
+                    print(f"[DEBUG] Filtering out irrelevant listing: {title} (Query: {query})", file=os.sys.stderr)
 
             except Exception as e:
                 print(f"Error parsing a listing: {e}", file=os.sys.stderr)
