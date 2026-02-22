@@ -127,21 +127,11 @@ The `test.py` script includes a predefined dictionary of cities, primarily focus
 
 ```python
 cities = {
-  'Vancouver': 'vancouver',
-  'Victoria': 'victoria',
-  'Burnaby': 'burnaby',
-  'Richmond': '112202378796934',
-  'Surrey': 'surrey',
-  'Kelowna': 'kelowna',
-  'Abbotsford': 'abbotsford',
-  'Nanaimo': 'nanaimo',
-  'Kamloops': 'kamloops',
-  'Prince George': 'princegeorge',
-  'Coquitlam': 'coquitlam',
-  'Saanich': 'saanich',
-  'Langley': 'langley',
-  'Delta': 'delta',
-  'Maple Ridge': 'mapleridge'
+    'Vancouver': 'vancouver', 'Victoria': 'victoria', 'Burnaby': '110574778966847', 'Richmond': '112202378796934',
+    'Surrey': '109571329060695', 'Kelowna': '111949595490847', 'Abbotsford': '112008808810771', 'Nanaimo': 'nanaimo',
+    'Kamloops': '114995818516099', 'Prince George': '114995818516099', 'Coquitlam': '110019705694079',
+    'Langley': '105471749485955', 'Delta': '106083456090237', 'Maple Ridge': '103746596331495', 'New Westminster': '115381681808519',
+    'Courtenay': '103113716395848',
 }
 ```
 
