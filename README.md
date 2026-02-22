@@ -121,9 +121,9 @@ python3 test.py --city "Richmond" --query "iPad Air" --max_price 100
 
 ---
 
-## Supported Cities (British Columbia)
+## Supported Cities (Metro Vancouver, BC and surrounding areas)
 
-Some cities use special Marketplace IDs for reliability:
+The `test.py` script includes a predefined dictionary of cities, primarily focused on Metro Vancouver and surrounding areas in British Columbia. These cities use special Marketplace IDs for improved reliability. You can customize the `cities` dictionary within `test.py` to add or modify supported locations:
 
 ```python
 cities = {
