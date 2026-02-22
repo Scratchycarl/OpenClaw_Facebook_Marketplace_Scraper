@@ -6,6 +6,7 @@ import re
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 import argparse
+from urllib.parse import quote_plus
 
 # Regexes used for price extraction
 CURRENCY_RE = re.compile(r'(?:CA\$|C\$|US\$|USD|\$)\s*[\d,]+(?:\.\d+)?', re.IGNORECASE)
@@ -149,7 +150,9 @@ def crawl_facebook_marketplace_cli(city: str, query: str, max_price: int, auth_s
     if city not in cities:
         print(f"Warning: '{city}' not found in predefined cities. Attempting to use '{city_id}' directly. This may fail if Facebook uses a different slug.", file=os.sys.stderr)
 
-    marketplace_url = f'https://www.facebook.com/marketplace/{city_id}/search/?query={query}&maxPrice={max_price}'
+    # URL-encode the query parameter
+    encoded_query = quote_plus(query)
+    marketplace_url = f'https://www.facebook.com/marketplace/{city_id}/search/?query={encoded_query}&maxPrice={max_price}'
 
     if not os.path.exists(auth_state_path):
         print(f"Error: Authentication state file not found at {auth_state_path}. Please run login_and_save_cookies.py first.", file=os.sys.stderr)
