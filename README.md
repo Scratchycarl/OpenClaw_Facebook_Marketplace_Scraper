@@ -163,3 +163,8 @@ The scraper prints a JSON array:
 * Do not run aggressively (high request frequency may trigger anti-bot detection)
 * Use responsibly and ethically
 
+---
+
+## Related Project:
+
+Check out this FB-Markertplace manager: https://github.com/Scratchycarl/Multi-Account_FB_Listing_Manager_No_API
